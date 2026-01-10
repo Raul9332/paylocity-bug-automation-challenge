@@ -3,17 +3,20 @@ package com.raul.paylocity.tests.ui;
 import com.raul.paylocity.core.BaseUiTest;
 import com.raul.paylocity.pages.DashboardPage;
 import com.raul.paylocity.pages.EmployeeModal;
-import com.raul.paylocity.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class EmployeeCrudUiTests extends BaseUiTest {
 
     @Test
     public void addEditDeleteEmployee_happyPath() {
+
         openLogin();
 
-        new LoginPage(driver, wait).loginWithDefaultUser();
+        loginPage.loginWithDefaultUser();
+
         DashboardPage dashboard = new DashboardPage(driver, wait);
         Assert.assertTrue(dashboard.isLoaded(), "Dashboard did not load. Check locators or login.");
 
@@ -24,10 +27,11 @@ public class EmployeeCrudUiTests extends BaseUiTest {
         EmployeeModal modal = dashboard.clickAddEmployee();
         modal.setFirstName(first).setLastName(last).setDependents(2).clickAdd();
 
-        Assert.assertTrue(
-                dashboard.hasEmployeeRow(first, last),
-                "Expected employee row after Add. If not found, adjust table locators / wait for refresh."
-        );
+        dashboard.waitForEmployeeRow(first, last, Duration.ofSeconds(10));
+
+        Assert.assertTrue(dashboard.hasEmployeeRow(first, last),
+                "Expected employee row after Add. If not found, adjust table locators / wait for refresh.");
+
 
         // EDIT
         dashboard.clickEditFor(first, last);
@@ -36,6 +40,6 @@ public class EmployeeCrudUiTests extends BaseUiTest {
 
         // DELETE
         dashboard.clickDeleteFor(first, last);
-        // TODO
+
     }
 }

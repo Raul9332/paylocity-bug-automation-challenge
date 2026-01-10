@@ -21,6 +21,11 @@ public final class Waits {
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
+
+    public static boolean invisible(WebDriverWait wait, By by) {
+        return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+    }
+
     public static void domReady(WebDriver driver, Duration timeout) {
         new WebDriverWait(driver, timeout).until(d ->
                 ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete")
