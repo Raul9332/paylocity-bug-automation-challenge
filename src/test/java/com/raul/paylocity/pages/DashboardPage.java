@@ -4,23 +4,19 @@ import com.raul.paylocity.core.Waits;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
-public class DashboardPage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
-
-    // TODO
-    private final By dashboardHeader = By.xpath("TODO");
-    private final By addEmployeeBtn  = By.xpath("TODO");
-
-
-    private final By tableRows = By.xpath("TODO");
+public class DashboardPage extends BasePage {
 
     public DashboardPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+        super(driver, wait);
     }
+
+    private final By dashboardHeader = By.xpath("//table[@id='employeesTable']/thead");
+    private final By addEmployeeBtn  = By.id("add");
+    private final By tableRows = By.xpath("//table[@id='employeesTable']//tbody//tr");
+
 
     public boolean isLoaded() {
         try {
@@ -29,6 +25,10 @@ public class DashboardPage {
         } catch (TimeoutException e) {
             return false;
         }
+    }
+    public void waitForEmployeeRow(String firstName, String lastName, Duration timeout) {
+        WebDriverWait w = new WebDriverWait(driver, timeout);
+        w.until(d -> hasEmployeeRow(firstName, lastName));
     }
 
     public EmployeeModal clickAddEmployee() {
@@ -41,27 +41,61 @@ public class DashboardPage {
     }
 
     public boolean hasEmployeeRow(String firstName, String lastName) {
-        return rows().stream().anyMatch(r -> r.getText().contains(firstName) && r.getText().contains(lastName));
+        return rows().stream()
+                .anyMatch(r -> r.getText().contains(firstName) && r.getText().contains(lastName));
     }
 
-    // TODO:
     public void clickEditFor(String firstName, String lastName) {
-        WebElement row = rows().stream()
-                .filter(r -> r.getText().contains(firstName) && r.getText().contains(lastName))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Row not found for: " + firstName + " " + lastName));
-
-
-        row.findElement(By.cssSelector("button:has-text('Edit'), a:has-text('Edit')")).click();
+        WebElement row = findRow(firstName, lastName);
+        WebElement edit = findActionInRow(row, Action.EDIT);
+        edit.click();
     }
 
     public void clickDeleteFor(String firstName, String lastName) {
-        WebElement row = rows().stream()
+        WebElement row = findRow(firstName, lastName);
+        WebElement del = findActionInRow(row, Action.DELETE);
+        del.click();
+    }
+
+    private WebElement findRow(String firstName, String lastName) {
+        return rows().stream()
                 .filter(r -> r.getText().contains(firstName) && r.getText().contains(lastName))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Row not found for: " + firstName + " " + lastName));
+    }
 
-        row.findElement(By.cssSelector("button:has-text('Delete'), a:has-text('Delete')")).click();
+    private enum Action { EDIT, DELETE }
+
+
+    private WebElement findActionInRow(WebElement row, Action action) {
+
+        String label = (action == Action.EDIT) ? "Edit" : "Delete";
+
+        List<By> candidates = List.of(
+
+                By.xpath(".//button[contains(normalize-space(.),'" + label + "')]"),
+                By.xpath(".//a[contains(normalize-space(.),'" + label + "')]"),
+
+
+                (action == Action.EDIT)
+                        ? By.xpath(".//i[contains(@class,'edit') or contains(@class,'fa-edit') or contains(@class,'pencil')]")
+                        : By.xpath(".//i[contains(@class,'delete') or contains(@class,'fa-trash') or contains(@class,'trash') or contains(@class,'remove')]"),
+
+
+                (action == Action.EDIT)
+                        ? By.xpath(".//i[1]")
+                        : By.xpath(".//i[2]")
+        );
+
+        for (By by : candidates) {
+            try {
+                WebElement el = row.findElement(by);
+
+                return el;
+            } catch (NoSuchElementException ignored) {
+            }
+        }
+
+        throw new NoSuchElementException("Could not find " + action + " action in row: " + row.getText());
     }
 }
-

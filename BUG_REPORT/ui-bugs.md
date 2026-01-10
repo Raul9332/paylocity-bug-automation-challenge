@@ -41,6 +41,9 @@
 **Module:** UI  
 **Screen:** Add Employee Form
 
+### Preconditions
+Logged with correct user into Paylocity Beneficts Dashboard
+
 ### Steps to Reproduce
 1. Navigate to Benefits Dashboard
 2. Click on `Add Employee`
@@ -65,6 +68,9 @@ TODO
 **Module:** UI  
 **Screen:** Add Employee Form
 
+### Preconditions
+Logged with correct user into Paylocity Beneficts Dashboard
+
 ### Steps to Reproduce
 1. Click `Add Employee`
 2. Leave all fields empty
@@ -88,6 +94,9 @@ TODO
 **Module:** UI  
 **Screen:** Add Employee Form
 
+### Preconditions
+Logged with correct user into Paylocity Beneficts Dashboard
+
 ### Steps to Reproduce
 1. Click `Add Employee`
 2. Fill name fields
@@ -95,7 +104,7 @@ TODO
 4. Click `Add`
 
 ### Expected Result
-System should display validation error for missing dependents.
+System should display validation error for missing dependents filed.
 
 ### Actual Result
 Employee is added without dependents validation.
@@ -105,12 +114,15 @@ TODO
 
 ---
 ### Bug ID: UI-04
-**Title:** Dependents field allows negative values  
-**Severity:** High  
-**Priority:** High
+**Title:** Dependents field allows negative and text values without error message shown 
+**Severity:** Medium  
+**Priority:** Medium
 
 **Module:** UI  
 **Screen:** Add Employee Form
+
+### Preconditions
+Logged with correct user into Paylocity Beneficts Dashboard
 
 ### Steps to Reproduce
 1. Click `Add Employee`
@@ -153,7 +165,7 @@ TODO
 
 ---
 ### Bug ID: UI-06
-**Title:** Last Name field allows numeric characters  
+**Title:** Last Name fields allows numeric characters  
 **Severity:** Medium  
 **Priority:** Medium
 
