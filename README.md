@@ -53,6 +53,9 @@ The framework is built using **Clean Code**, **SOLID principles**, and a **clear
 - Git / GitHub
 
 ---
+## Test UI executed
+<img width="1782" height="978" alt="image" src="https://github.com/user-attachments/assets/f80eb834-6c65-4fbe-a4bb-d3266db0a3ed" />
+
 
 ## 📁 Project Structure
 
@@ -69,6 +72,4 @@ src
          ├── testng.xml
          └── config.properties
 
-### Test UI executed
-<img width="1782" height="978" alt="image" src="https://github.com/user-attachments/assets/68fc789e-af3b-4887-8a5d-168b3085b705" />
 
