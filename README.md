@@ -41,6 +41,7 @@ The framework is built using **Clean Code**, **SOLID principles**, and a **clear
 - Selenium WebDriver 4
 - TestNG
 - Page Object Model (POM)
+- Allure Report
 
 ### API Automation
 - Rest Assured
