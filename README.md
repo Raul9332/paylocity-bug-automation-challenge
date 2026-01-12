@@ -68,3 +68,7 @@ src
      └── resources
          ├── testng.xml
          └── config.properties
+
+### Test UI executed
+<img width="1782" height="978" alt="image" src="https://github.com/user-attachments/assets/68fc789e-af3b-4887-8a5d-168b3085b705" />
+
