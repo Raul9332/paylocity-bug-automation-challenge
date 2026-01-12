@@ -59,6 +59,17 @@ public class LoginPage extends BasePage {
         return new DashboardPage(this.driver, this.wait);
     }
 
+    public String getValidationSummaryText() {
+        return find(errorPasswordMessage).getText();
+    }
+
+    public String getFullValidationText() {
+        return wait.until(d -> driver.findElement(By.cssSelector("div.validation-summary-errors"))).getText();
+    }
+
+
+
+
     public String getErrorMessage(){
         return Waits.visible(wait, errorMessage).getText();
     }

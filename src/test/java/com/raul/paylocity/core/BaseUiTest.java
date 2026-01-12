@@ -80,4 +80,6 @@ public abstract class BaseUiTest {
         Files.copy(src.toPath(), dest, StandardCopyOption.REPLACE_EXISTING);
         System.out.println("📸 Screenshot saved: " + dest.toAbsolutePath());
     }
+
+
 }
