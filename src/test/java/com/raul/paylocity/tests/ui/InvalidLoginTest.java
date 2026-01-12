@@ -40,8 +40,9 @@ public class InvalidLoginTest extends BaseUiTest {
 
         String actualMessage2 = loginPage.getErrorPassReq();
         Assert.assertTrue(actualMessage2.contains(
-                "The Password field is required. "
+                "The Password field is required."
         ));
 
     }
+
 }

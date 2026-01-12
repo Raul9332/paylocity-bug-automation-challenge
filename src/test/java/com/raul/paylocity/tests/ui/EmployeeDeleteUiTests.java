@@ -36,6 +36,8 @@ public class EmployeeDeleteUiTests extends BaseUiTest {
 
         // Act: delete
         dashboard.clickDeleteFor(first, last);
+        dashboard.waitUntilEmployeeRowIsGone(first, last, Duration.ofSeconds(20));
+        Assert.assertFalse(dashboard.hasEmployeeRow(first, last), "Row still present after delete");
 
         // Assert: verify it disappears
         long end = System.currentTimeMillis() + Duration.ofSeconds(10).toMillis();

@@ -20,8 +20,8 @@ public class EmployeeCrudUiTests extends BaseUiTest {
         DashboardPage dashboard = new DashboardPage(driver, wait);
         Assert.assertTrue(dashboard.isLoaded(), "Dashboard did not load. Check locators or login.");
 
-        String first = "RaulUI";
-        String last  = "DeLeonUI";
+        String first = "RaulUI3";
+        String last  = "DeLeonUI3";
 
         // ADD
         EmployeeModal modal = dashboard.clickAddEmployee();
