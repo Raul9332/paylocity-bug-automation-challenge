@@ -1,19 +1,70 @@
-# Paylocity Next Steps: Bug and Automation Challenge
+# 🧪 Paylocity – Bug & Automation Challenge  
+### UI & API Automation Framework (Java)
 
-## Tech
+**Author:** Raul De Leon  
+**Role:** Senior SDET / Automation Engineer  
+**Tech Stack:** Java · Selenium · TestNG · Rest Assured · Maven  
+
+This repository presents a **comprehensive UI and API automation solution**, designed following **real-world enterprise best practices** with a strong focus on **readability, scalability, and maintainability**.
+
+---
+
+## 🎯 Project Objective
+
+- Validate **critical business flows** through automated testing
+- Demonstrate expertise in:
+  - UI Automation (Selenium WebDriver)
+  - API Automation (Rest Assured)
+  - Automation framework design
+  - Test architecture and best practices
+- Provide a **reusable and scalable foundation** for enterprise-level projects
+
+---
+
+## 🏗️ Framework Architecture
+
+The framework is built using **Clean Code**, **SOLID principles**, and a **clear separation of responsibilities**, ensuring long-term maintainability.
+
+### 🔹 Design Patterns & Approaches
+- **Page Object Model (POM)** for UI automation
+- **Data-Driven Testing (DDT)** for flexibility and scalability
+- **Base Test Layer** for shared setup and utilities
+- **Explicit waits** for UI stability
+- **Independent and repeatable tests**
+
+---
+
+## 🧰 Tech Stack
+
+### UI Automation
 - Java 21
+- Selenium WebDriver 4
+- TestNG
+- Page Object Model (POM)
+
+### API Automation
+- Rest Assured
+- JSON & HTTP validations
+- Full CRUD coverage
+
+### Build & Tools
 - Maven
-- Selenium WebDriver 4 + TestNG (UI)
-- RestAssured (API)
+- IntelliJ IDEA
+- Git / GitHub
 
-## Config
-Edit `src/test/resources/config.properties`:
-- ui.baseUrl
-- api.baseUrl
-- api.auth (Authorization header value)
-- ui.username / ui.password
+---
 
-## Run
-Run all:
-```bash
-mvn -q test
+## 📁 Project Structure
+
+```text
+src
+ └── test
+     ├── java
+     │   ├── core          # Base test setup, waits, config
+     │   ├── pages         # Page Objects (UI)
+     │   ├── tests
+     │   │   ├── ui        # UI Test Scenarios
+     │   │   └── api       # API Test Scenarios
+     └── resources
+         ├── testng.xml
+         └── config.properties
